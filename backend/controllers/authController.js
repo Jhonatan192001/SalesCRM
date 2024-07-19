@@ -6,7 +6,7 @@ exports.login = async (req, res) => {
   const { user, password } = req.body;
 
   try {
-    const [rows] = await pool.execute('SELECT * FROM user WHERE user = ?', [user]);
+    const [rows] = await pool.execute('SELECT * FROM usuario WHERE user = ?', [user]);
 
     if (rows.length === 0) {
       return res.status(401).json({ message: 'Usuario no encontrado' });
@@ -18,9 +18,13 @@ exports.login = async (req, res) => {
       return res.status(401).json({ message: 'Contraseña incorrecta' });
     }
 
-    const token = jwt.sign({ id: rows[0].id_user }, process.env.JWT_SECRET, { expiresIn: '1h' });
+    const token = jwt.sign(
+      { id: rows[0].idUser, role: rows[0].rol_id },
+      process.env.JWT_SECRET,
+      { expiresIn: '1h' }
+    );
 
-    res.json({ token, user: { id: rows[0].id_user, user: rows[0].user } });
+    res.json({ token, user: { id: rows[0].idUser, user: rows[0].user, role: rows[0].rol_id } });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Error en el servidor' });

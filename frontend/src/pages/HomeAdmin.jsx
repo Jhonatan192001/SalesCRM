@@ -6,7 +6,7 @@ import logoP from '../assets/LOSTP.png';
 import logoG from '../assets/Recurso 221.png';
 import NavItem from '../components/NavItem';
 
-const HomeSeller = () => {
+const HomeAdmin = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -77,10 +77,10 @@ const HomeSeller = () => {
             </div>
           </nav>
         </header>
-        <main className="p-4">Contenido vendedor</main>
+        <main className="p-4">Contenido Administrador</main>
       </div>
     </div>
   );
 };
 
-export default HomeSeller;
+export default HomeAdmin;

@@ -20,7 +20,15 @@ function Login() {
         credentials
       );
       localStorage.setItem("token", response.data.token);
-      navigate("/homeSeller");
+
+      const userRole = response.data.user.role;
+      if (userRole === 1) {
+        navigate("/administrador");
+      } else if (userRole === 2) {
+        navigate("/vendedor");
+      } else {
+        setError("Rol de usuario no reconocido");
+      }
     } catch (error) {
       setError(error.response?.data?.message || "Error al iniciar sesión");
     }
@@ -33,11 +41,7 @@ function Login() {
       <div className="absolute bottom-0 left-0 w-1/4 h-1/4 bg-blue-600 rounded-full transform translate-x-1/4 translate-y-1/4"></div>
       <div className="bg-transparent p-8 z-10 w-80">
         <div className="flex justify-center mb-6">
-          <img
-            src={ logo }
-            alt="OST Logo"
-            className="w-24"
-          />
+          <img src={logo} alt="OST Logo" className="w-24" />
         </div>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>

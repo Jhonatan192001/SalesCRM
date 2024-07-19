@@ -2,6 +2,7 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Login from './pages/Login';
 import HomeSeller from './pages/HomeSeller';
+import HomeAdmin from './pages/HomeAdmin';
 // import DbStatus from './components/DbStatus';
 
 function App() {
@@ -11,7 +12,8 @@ function App() {
         {/* <DbStatus /> */}
         <Routes>
           <Route path="/" element={<Login />} />
-          <Route path="/homeSeller" element={<HomeSeller />} />
+          <Route path="/vendedor" element={<HomeSeller />} />
+          <Route path="/administrador" element={<HomeAdmin />} />
         </Routes>
       </div>
     </Router>
