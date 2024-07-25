@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const { testConnection } = require('./config/db');
 const authRoutes = require('./routes/authRoutes');
+const workerRoutes = require('./routes/workerRoutes.js');
 require('dotenv').config();
 
 const app = express();
@@ -12,6 +13,7 @@ app.use(express.json());
 const PORT = process.env.PORT || 5000;
 
 app.use('/api/auth', authRoutes);
+app.use('/api/workers', workerRoutes);
 
 app.get('/api/test-connection', async (req, res) => {
   const isConnected = await testConnection();

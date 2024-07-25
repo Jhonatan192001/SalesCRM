@@ -7,6 +7,7 @@ import {
   faHouse,
   faUsers,
   faUsersViewfinder,
+  faChartSimple,
 } from "@fortawesome/free-solid-svg-icons";
 import logoP from "../assets/LOSTP.png";
 import logoG from "../assets/Recurso 221.png";
@@ -52,14 +53,20 @@ const HomeAdmin = () => {
             />
             <NavItem
               icon={faUsersViewfinder}
-              name="Lista de Trabajadores"
+              name="Trabajadores"
               link="trabajadores"
               isOpen={isSidebarOpen}
             />
             <NavItem
               icon={faUsers}
-              name="Lista de Clientes"
+              name="Clientes"
               link="clientes"
+              isOpen={isSidebarOpen}
+            />
+            <NavItem
+              icon={faChartSimple}
+              name="Reportes"
+              link="reportes"
               isOpen={isSidebarOpen}
             />
           </nav>

@@ -17,6 +17,7 @@ function App() {
             <Route path="inicio" element={<div>Contenido Inicio</div>} />
             <Route path="trabajadores" element={<ListOfWorkers />} />
             <Route path="clientes" element={<div>Lista de Clientes</div>} />
+            <Route path="reportes" element={<div>Contenido de reportes</div>} />
           </Route>
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>

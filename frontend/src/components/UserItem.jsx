@@ -45,12 +45,12 @@ const UserItem = ({ user }) => {
               <ul>
                 <li>
                   <button className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-                    View profile
+                    Editar
                   </button>
                 </li>
                 <li>
-                  <button className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-                    Message
+                  <button className="w-full text-left px-4 py-2 text-sm text-red-500 hover:bg-gray-100">
+                    Eliminar
                   </button>
                 </li>
               </ul>
