@@ -1,9 +1,7 @@
-/* revisar por que no aparece el tooltip */
-/* eslint-disable no-unused-vars */
-import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { NavLink } from "react-router-dom";
 import { Tooltip } from "react-tooltip";
+import PropTypes from "prop-types";
 
 const NavItem = ({ icon, name, link, isOpen }) => {
   return (
@@ -26,4 +24,12 @@ const NavItem = ({ icon, name, link, isOpen }) => {
   );
 };
 
+NavItem.propTypes = {
+  icon: PropTypes.object.isRequired,
+  name: PropTypes.string.isRequired,
+  link: PropTypes.string.isRequired,
+  isOpen: PropTypes.bool.isRequired,
+};
+
 export default NavItem;
+

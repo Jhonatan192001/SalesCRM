@@ -1,6 +1,4 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable no-unused-vars */
-import React from 'react';
+import PropTypes from "prop-types";
 
 const Toast = ({ message, type, onClose }) => {
   return (
@@ -9,6 +7,12 @@ const Toast = ({ message, type, onClose }) => {
       <button onClick={onClose} className="ml-4">×</button>
     </div>
   );
+};
+
+Toast.propTypes = {
+  message: PropTypes.string.isRequired,
+  type: PropTypes.oneOf(['success', 'error']).isRequired,
+  onClose: PropTypes.func.isRequired,
 };
 
 export default Toast;

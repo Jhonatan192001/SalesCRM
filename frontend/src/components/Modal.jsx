@@ -1,6 +1,6 @@
-import React from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
+import PropTypes from "prop-types";
 
 const Modal = ({ isOpen, onClose, title, children }) => {
   if (!isOpen) return null;
@@ -14,6 +14,7 @@ const Modal = ({ isOpen, onClose, title, children }) => {
             <button
               className="p-1 ml-auto bg-transparent border-0 text-black float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
               onClick={onClose}
+              aria-label="Close modal"
             >
               <FontAwesomeIcon icon={faTimes} className="text-gray-500 h-6 w-6" />
             </button>
@@ -25,6 +26,13 @@ const Modal = ({ isOpen, onClose, title, children }) => {
       </div>
     </div>
   );
+};
+
+Modal.propTypes = {
+  isOpen: PropTypes.bool.isRequired,
+  onClose: PropTypes.func.isRequired,
+  title: PropTypes.string.isRequired,
+  children: PropTypes.node.isRequired
 };
 
 export default Modal;

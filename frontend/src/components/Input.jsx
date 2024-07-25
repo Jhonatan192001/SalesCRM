@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash, faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
+import PropTypes from "prop-types";
 
 function Input({ label, type, name, value, placeholder, onChange, options, icon }) {
   const [showPassword, setShowPassword] = useState(false);
@@ -32,7 +33,7 @@ function Input({ label, type, name, value, placeholder, onChange, options, icon 
               onBlur={handleSelectBlur}
             >
               <option value="">{placeholder}</option>
-              {options && options.map((option, index) => (
+              {options.map((option, index) => (
                 <option key={index} value={option.value}>
                   {option.label}
                 </option>
@@ -73,5 +74,28 @@ function Input({ label, type, name, value, placeholder, onChange, options, icon 
     </div>
   );
 }
+
+Input.propTypes = {
+  label: PropTypes.string.isRequired,
+  type: PropTypes.oneOf(['text', 'password', 'select']).isRequired,
+  name: PropTypes.string.isRequired,
+  value: PropTypes.string,
+  placeholder: PropTypes.string,
+  onChange: PropTypes.func.isRequired,
+  options: PropTypes.arrayOf(
+    PropTypes.shape({
+      value: PropTypes.string,
+      label: PropTypes.string
+    })
+  ),
+  icon: PropTypes.object
+};
+
+Input.defaultProps = {
+  value: '',
+  placeholder: '',
+  options: [],
+  icon: null
+};
 
 export default Input;

@@ -1,5 +1,4 @@
-/* eslint-disable no-unused-vars */
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import UserItem from "../components/UserItem";
 import Button from "../components/Button";
 import Modal from "../components/Modal";
@@ -97,6 +96,7 @@ const ListOfWorkers = () => {
             name="dni"
             value={newWorker.dni}
             onChange={handleInputChange}
+            placeholder="Ingrese el DNI o CE"
           />
           <Input
             label="Nombres"
@@ -104,6 +104,7 @@ const ListOfWorkers = () => {
             name="nombres"
             value={newWorker.nombres}
             onChange={handleInputChange}
+            placeholder="Ingrese el nombre completo"
           />
           <Input
             label="Apellido Paterno"
@@ -111,6 +112,7 @@ const ListOfWorkers = () => {
             name="apellido_paterno"
             value={newWorker.apellido_paterno}
             onChange={handleInputChange}
+            placeholder="Ingrese el apellido paterno"
           />
           <Input
             label="Apellido Materno"
@@ -118,6 +120,7 @@ const ListOfWorkers = () => {
             name="apellido_materno"
             value={newWorker.apellido_materno}
             onChange={handleInputChange}
+            placeholder="Ingrese el apellido materno"
           />
           <Input
             label="Email"
@@ -125,6 +128,7 @@ const ListOfWorkers = () => {
             name="email"
             value={newWorker.email}
             onChange={handleInputChange}
+            placeholder="ejm. empleado@gmail.com"
           />
           <Input
             label="Celular"
@@ -132,6 +136,7 @@ const ListOfWorkers = () => {
             name="celular"
             value={newWorker.celular}
             onChange={handleInputChange}
+            placeholder="Ingrese el número celular"
           />
           <Input
             label="Sede"
@@ -150,6 +155,7 @@ const ListOfWorkers = () => {
               { value: 1, label: "Administrador" },
               { value: 2, label: "Vendedor" },
             ]}
+            placeholder="Seleccione el rol del trabajador"
           />
           <Input
             label="Comisión"
@@ -157,6 +163,7 @@ const ListOfWorkers = () => {
             name="comision"
             value={newWorker.comision}
             onChange={handleInputChange}
+            placeholder="Ingrese la comisión"
           />
           <Input
             label="Usuario"
@@ -164,6 +171,7 @@ const ListOfWorkers = () => {
             name="usuario"
             value={newWorker.usuario}
             onChange={handleInputChange}
+            placeholder="Ingrese el usuario"
           />
           <Input
             label="Contraseña"
@@ -171,13 +179,15 @@ const ListOfWorkers = () => {
             name="contrasena"
             value={newWorker.contrasena}
             onChange={handleInputChange}
+            placeholder="Ingrese la contraseña"
           />
           <Input
-            label="Repetir contraseña"
+            label="Confirmar contraseña"
             type="password"
             name="repetirContrasena"
             value={newWorker.repetirContrasena}
             onChange={handleInputChange}
+            placeholder="Repita la contraseña"
           />
           <div className="col-span-full flex justify-end mt-4">
             <Button text="Registrar" color="blue" type="submit" />

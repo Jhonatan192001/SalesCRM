@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEllipsisV } from "@fortawesome/free-solid-svg-icons";
+import PropTypes from "prop-types";
 
 const UserItem = ({ user }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -25,14 +26,6 @@ const UserItem = ({ user }) => {
           <p className="text-sm font-medium text-gray-900">{user.position}</p>
           <p className="inline-flex items-center bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full">
             <span className="w-2 h-2 me-1 bg-green-500 rounded-full"></span>
-            {user.status}
-          </p>
-          <p className="inline-flex items-center bg-red-100 text-red-800 text-xs font-medium px-2.5 py-0.5 rounded-full sr-only">
-            <span className="w-2 h-2 me-1 bg-red-500 rounded-full"></span>
-            {user.status}
-          </p>
-          <p className="inline-flex items-center bg-yellow-100 text-yellow-800 text-xs font-medium px-2.5 py-0.5 rounded-full sr-only">
-            <span className="w-2 h-2 me-1 bg-yellow-500 rounded-full"></span>
             {user.status}
           </p>
         </div>
@@ -60,6 +53,16 @@ const UserItem = ({ user }) => {
       </div>
     </div>
   );
+};
+
+UserItem.propTypes = {
+  user: PropTypes.shape({
+    photo: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    email: PropTypes.string.isRequired,
+    position: PropTypes.string.isRequired,
+    status: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
 export default UserItem;
