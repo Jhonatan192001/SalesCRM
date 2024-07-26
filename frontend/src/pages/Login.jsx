@@ -20,6 +20,7 @@ function Login() {
         credentials
       );
       localStorage.setItem("token", response.data.token);
+      localStorage.setItem("userName", response.data.user.nombre);
 
       const userRole = response.data.user.role;
       if (userRole === 1) {

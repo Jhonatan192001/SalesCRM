@@ -1,101 +1,68 @@
-import { useState } from 'react';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEye, faEyeSlash, faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 
-function Input({ label, type, name, value, placeholder, onChange, options, icon }) {
-  const [showPassword, setShowPassword] = useState(false);
-  const [isSelectOpen, setIsSelectOpen] = useState(false);
+const Input = ({ label, type, name, value, onChange, placeholder, options, className, required, disabled }) => {
+  const inputClasses = `mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 p-1 ${disabled ? 'bg-gray-100' : ''} ${className}`;
 
-  const inputClasses = "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline";
-
-  const togglePasswordVisibility = () => setShowPassword(!showPassword);
-
-  // Handlers for select click and blur
-  const handleSelectClick = () => setIsSelectOpen(!isSelectOpen);
-  const handleSelectBlur = () => setIsSelectOpen(false);
+  if (type === 'select') {
+    return (
+      <div>
+        <label htmlFor={name} className="block text-sm font-medium text-gray-700">
+          {label} {required && <span className="text-red-500">*</span>}
+        </label>
+        <select
+          id={name}
+          name={name}
+          value={value}
+          onChange={onChange}
+          className={inputClasses}
+          required={required}
+          disabled={disabled}
+        >
+          <option value="">{placeholder}</option>
+          {options.map((option) => (
+            <option key={option.value} value={option.value}>
+              {option.label}
+            </option>
+          ))}
+        </select>
+      </div>
+    );
+  }
 
   return (
-    <div className="mb-4 relative">
-      <label className="block text-black text-sm font-bold mb-2" htmlFor={name}>
-        {label}
+    <div>
+      <label htmlFor={name} className="block text-sm font-medium text-gray-700">
+        {label} {required && <span className="text-red-500">*</span>}
       </label>
-      <div className="relative">
-        {type === 'select' ? (
-          <>
-            <select
-              className={`${inputClasses} pr-10`}
-              id={name}
-              name={name}
-              value={value}
-              onChange={onChange}
-              onClick={handleSelectClick}
-              onBlur={handleSelectBlur}
-            >
-              <option value="">{placeholder}</option>
-              {options.map((option, index) => (
-                <option key={index} value={option.value}>
-                  {option.label}
-                </option>
-              ))}
-            </select>
-            <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-              <FontAwesomeIcon icon={isSelectOpen ? faChevronUp : faChevronDown} className="h-4 w-4" />
-            </div>
-          </>
-        ) : (
-          <>
-            <input
-              className={`${inputClasses} ${type === 'password' ? 'pr-10' : ''}`}
-              id={name}
-              type={type === 'password' ? (showPassword ? 'text' : 'password') : type}
-              name={name}
-              value={value}
-              placeholder={placeholder}
-              onChange={onChange}
-            />
-            {type === 'password' && (
-              <button
-                type="button"
-                className="absolute inset-y-0 right-0 flex items-center px-2"
-                onClick={togglePasswordVisibility}
-              >
-                <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} className="h-4 w-4 text-gray-500" />
-              </button>
-            )}
-          </>
-        )}
-        {icon && (
-          <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-            <FontAwesomeIcon icon={icon} className="h-5 w-5 text-gray-400" />
-          </div>
-        )}
-      </div>
+      <input
+        type={type}
+        id={name}
+        name={name}
+        value={value}
+        onChange={onChange}
+        placeholder={placeholder}
+        className={inputClasses}
+        required={required}
+        disabled={disabled}
+      />
     </div>
   );
-}
+};
 
 Input.propTypes = {
   label: PropTypes.string.isRequired,
-  type: PropTypes.oneOf(['text', 'password', 'select']).isRequired,
+  type: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  value: PropTypes.string,
-  placeholder: PropTypes.string,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   onChange: PropTypes.func.isRequired,
-  options: PropTypes.arrayOf(
-    PropTypes.shape({
-      value: PropTypes.string,
-      label: PropTypes.string
-    })
-  ),
-  icon: PropTypes.object
-};
-
-Input.defaultProps = {
-  value: '',
-  placeholder: '',
-  options: [],
-  icon: null
+  placeholder: PropTypes.string,
+  options: PropTypes.arrayOf(PropTypes.shape({
+    value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+    label: PropTypes.string.isRequired,
+  })),
+  className: PropTypes.string,
+  required: PropTypes.bool,
+  disabled: PropTypes.bool,
 };
 
 export default Input;

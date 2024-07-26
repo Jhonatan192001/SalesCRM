@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faArrowRight,
@@ -15,15 +15,24 @@ import { useNavigate } from "react-router-dom";
 const HomeSeller = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [userName, setUserName] = useState("");
   const navigate = useNavigate();
+
+  useEffect(() => {
+    // Obtener el nombre del usuario del localStorage
+    const storedUserName = localStorage.getItem("userName");
+    if (storedUserName) {
+      setUserName(storedUserName);
+    }
+  }, []);
 
   const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
   const handleLogout = () => {
-    // Limpia la información de autenticación almacenada
     localStorage.removeItem("token");
-
+    localStorage.removeItem("userName");
+    setUserName(""); // Limpiar el estado local
     navigate("/");
   };
 
@@ -77,7 +86,7 @@ const HomeSeller = () => {
         <header className="bg-white shadow-md h-16 flex items-center px-4 transition-all duration-300">
           <nav className="w-full">
             <div className="flex justify-between items-center">
-              <h1 className="text-black text-lg font-semibold">Hola Jose👋</h1>
+              <h1 className="text-black text-lg font-semibold">Hola {userName} 👋</h1>
               <div className="relative">
                 <button
                   type="button"
