@@ -1,10 +1,7 @@
 const express = require('express');
-const { addWorker, getWorkers, updateWorker } = require('../controllers/workerController');
-
 const router = express.Router();
+const { login } = require('../controllers/authController');
 
-router.post('/add', addWorker);
-router.get('/', getWorkers);
-router.put('/:id', updateWorker);
+router.post('/login', login);
 
 module.exports = router;
